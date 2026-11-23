@@ -1,0 +1,197 @@
+{
+ "title": "Telemetry Overview",
+ "uid": "telemetry-overview",
+ "schemaVersion": 39,
+ "version": 1,
+ "refresh": "30s",
+ "time": {
+  "from": "2025-12-31T00:00:00Z",
+  "to": "2026-03-01T00:00:00Z"
+ },
+ "_comment": "Hand-written, NOT rendered in the build sandbox (no Grafana). Open it, fix any panel that errors, and take your own screenshot. Demo data is stamped from 2026-01-01, so widen the time range if panels are empty.",
+ "templating": {
+  "list": [
+   {
+    "name": "channel",
+    "type": "query",
+    "datasource": {
+     "type": "postgres",
+     "uid": "telemetry-pg"
+    },
+    "query": "SELECT channel_id FROM channels ORDER BY 1",
+    "refresh": 1,
+    "current": {}
+   }
+  ]
+ },
+ "panels": [
+  {
+   "id": 1,
+   "type": "timeseries",
+   "title": "Channel value ($channel)",
+   "gridPos": {
+    "x": 0,
+    "y": 0,
+    "w": 24,
+    "h": 9
+   },
+   "datasource": {
+    "type": "postgres",
+    "uid": "telemetry-pg"
+   },
+   "targets": [
+    {
+     "refId": "A",
+     "datasource": {
+      "type": "postgres",
+      "uid": "telemetry-pg"
+     },
+     "format": "time_series",
+     "rawQuery": true,
+     "editorMode": "code",
+     "rawSql": "SELECT time, value AS \"$channel\" FROM telemetry_readings WHERE channel_id = '$channel' AND $__timeFilter(time) ORDER BY time"
+    }
+   ]
+  },
+  {
+   "id": 2,
+   "type": "table",
+   "title": "Anomalies detected (latest 50)",
+   "gridPos": {
+    "x": 0,
+    "y": 9,
+    "w": 12,
+    "h": 9
+   },
+   "datasource": {
+    "type": "postgres",
+    "uid": "telemetry-pg"
+   },
+   "targets": [
+    {
+     "refId": "A",
+     "datasource": {
+      "type": "postgres",
+      "uid": "telemetry-pg"
+     },
+     "format": "table",
+     "rawQuery": true,
+     "editorMode": "code",
+     "rawSql": "SELECT channel_id, detector, start_time, end_time, round(score::numeric,2) AS score FROM anomalies WHERE $__timeFilter(start_time) ORDER BY start_time DESC LIMIT 50"
+    }
+   ]
+  },
+  {
+   "id": 3,
+   "type": "timeseries",
+   "title": "Packet events per hour (gap / duplicate / out_of_order)",
+   "gridPos": {
+    "x": 12,
+    "y": 9,
+    "w": 12,
+    "h": 9
+   },
+   "datasource": {
+    "type": "postgres",
+    "uid": "telemetry-pg"
+   },
+   "targets": [
+    {
+     "refId": "A",
+     "datasource": {
+      "type": "postgres",
+      "uid": "telemetry-pg"
+     },
+     "format": "time_series",
+     "rawQuery": true,
+     "editorMode": "code",
+     "rawSql": "SELECT date_trunc('hour', packet_time) AS time, kind, count(*) AS events FROM packet_events WHERE $__timeFilter(packet_time) GROUP BY 1,2 ORDER BY 1"
+    }
+   ]
+  },
+  {
+   "id": 4,
+   "type": "stat",
+   "title": "Readings stored",
+   "gridPos": {
+    "x": 0,
+    "y": 18,
+    "w": 6,
+    "h": 4
+   },
+   "datasource": {
+    "type": "postgres",
+    "uid": "telemetry-pg"
+   },
+   "targets": [
+    {
+     "refId": "A",
+     "datasource": {
+      "type": "postgres",
+      "uid": "telemetry-pg"
+     },
+     "format": "table",
+     "rawQuery": true,
+     "editorMode": "code",
+     "rawSql": "SELECT count(*) AS readings FROM telemetry_readings"
+    }
+   ]
+  },
+  {
+   "id": 5,
+   "type": "stat",
+   "title": "Dead-lettered packets",
+   "gridPos": {
+    "x": 6,
+    "y": 18,
+    "w": 6,
+    "h": 4
+   },
+   "datasource": {
+    "type": "postgres",
+    "uid": "telemetry-pg"
+   },
+   "targets": [
+    {
+     "refId": "A",
+     "datasource": {
+      "type": "postgres",
+      "uid": "telemetry-pg"
+     },
+     "format": "table",
+     "rawQuery": true,
+     "editorMode": "code",
+     "rawSql": "SELECT count(*) AS bad_packets FROM bad_packets"
+    }
+   ]
+  },
+  {
+   "id": 6,
+   "type": "table",
+   "title": "Alerts sent",
+   "gridPos": {
+    "x": 12,
+    "y": 18,
+    "w": 12,
+    "h": 4
+   },
+   "datasource": {
+    "type": "postgres",
+    "uid": "telemetry-pg"
+   },
+   "targets": [
+    {
+     "refId": "A",
+     "datasource": {
+      "type": "postgres",
+      "uid": "telemetry-pg"
+     },
+     "format": "table",
+     "rawQuery": true,
+     "editorMode": "code",
+     "rawSql": "SELECT event_time, channel_id, severity, destination, status FROM alerts ORDER BY event_time DESC LIMIT 20"
+    }
+   ]
+  }
+ ]
+}

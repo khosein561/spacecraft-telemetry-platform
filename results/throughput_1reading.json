@@ -1,0 +1,11 @@
+{
+ "machine": "Linux-6.18.44-fc-v378-x86_64-with-glibc2.39 / python 3.13.17",
+ "packets": 50000,
+ "readings_per_packet": 1,
+ "encode_packets_per_s": 50235,
+ "decode_packets_per_s": 42024,
+ "ingest_packets_per_s": 17432,
+ "ingest_rows_stored": 50000,
+ "ingest_seconds": 2.87,
+ "note": "single APID, in-memory broker, Postgres on same host: measures decode + sequence tracking + batched insert only, not Kafka"
+}

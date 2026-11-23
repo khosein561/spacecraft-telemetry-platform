@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# Secrets — never commit these
+.env
+
+# Big / raw data — document how to download it in data/README.md instead
+data/raw/
+data/*.zip
+*.parquet
+*.fits
+
+# Editor / OS
+.DS_Store
+.idea/
+.vscode/
+
+# generated benchmark arrays
+results/**/_data/
+results/**/_tune_data/
+data/synthetic/
+data/channels.json
+.hypothesis/

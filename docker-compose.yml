@@ -1,0 +1,58 @@
+# UNTESTED: written without access to Docker. Run `docker compose config` first, then
+# `docker compose up -d redpanda timescaledb grafana` and read the logs. Expect to fix small things.
+# Passwords below are local-dev placeholders only.
+services:
+  redpanda:
+    image: redpandadata/redpanda:latest
+    command:
+      - redpanda
+      - start
+      - --smp=1
+      - --memory=512M
+      - --overprovisioned
+      - --kafka-addr=PLAINTEXT://0.0.0.0:9092
+      - --advertise-kafka-addr=PLAINTEXT://localhost:9092
+    ports: ["9092:9092"]
+
+  timescaledb:
+    image: timescale/timescaledb:latest-pg16
+    environment:
+      POSTGRES_DB: telemetry
+      POSTGRES_USER: telemetry
+      POSTGRES_PASSWORD: change_me
+    ports: ["5432:5432"]
+    volumes:
+      - ./sql/schema.sql:/docker-entrypoint-initdb.d/01_schema.sql:ro
+      - ./sql/timescale_extras.sql:/docker-entrypoint-initdb.d/02_timescale.sql:ro
+      - pgdata:/var/lib/postgresql/data
+
+  grafana:
+    image: grafana/grafana:latest
+    ports: ["3000:3000"]
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: change_me
+    volumes:
+      - ./grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./grafana/dashboards:/var/lib/grafana/dashboards:ro
+    depends_on: [timescaledb]
+
+  consumer:
+    build: .
+    command: python -m telemetry.consume.decoder_consumer
+    environment:
+      KAFKA_BOOTSTRAP: redpanda:9092
+      POSTGRES_HOST: timescaledb
+    depends_on: [redpanda, timescaledb]
+    profiles: ["app"]
+
+  api:
+    build: .
+    command: uvicorn telemetry.api.main:app --host 0.0.0.0 --port 8000
+    environment:
+      POSTGRES_HOST: timescaledb
+    ports: ["8000:8000"]
+    depends_on: [timescaledb]
+    profiles: ["app"]
+
+volumes:
+  pgdata:

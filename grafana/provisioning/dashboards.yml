@@ -1,0 +1,6 @@
+apiVersion: 1
+providers:
+  - name: telemetry
+    type: file
+    options:
+      path: /var/lib/grafana/dashboards

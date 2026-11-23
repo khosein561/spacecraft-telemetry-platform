@@ -1,0 +1,8 @@
+{
+ "machine": "Linux-6.18.44-fc-v378-x86_64-with-glibc2.39 / python 3.13.17",
+ "packets": 20000,
+ "readings_per_packet": 20,
+ "encode_packets_per_s": 6887,
+ "decode_packets_per_s": 8244,
+ "note": "ingest benchmark only runs with --readings-per-packet 1"
+}

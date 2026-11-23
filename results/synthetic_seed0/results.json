@@ -1,0 +1,872 @@
+{
+ "cadence_s": 60.0,
+ "channels": [
+  "A-1",
+  "A-8",
+  "D-11",
+  "D-2",
+  "D-8",
+  "E-2",
+  "E-8",
+  "F-5",
+  "G-4",
+  "M-5",
+  "P-14",
+  "R-1"
+ ],
+ "summary": {
+  "zscore": {
+   "true_sequences": 12,
+   "predicted_sequences": 11,
+   "detected": 2,
+   "missed": 10,
+   "false_alarms": 6,
+   "precision": 0.25,
+   "recall": 0.16666666666666666,
+   "f1": 0.2,
+   "channels": 12,
+   "channel_days": 59.153,
+   "false_alarms_per_channel_day": 0.10143226109415356,
+   "alerts_after_dedupe": 11,
+   "mean_latency_samples": 1451.5,
+   "mean_latency_minutes": 1451.5,
+   "by_class": {
+    "point": {
+     "true": 10,
+     "detected": 2
+    },
+    "contextual": {
+     "true": 2,
+     "detected": 0
+    }
+   }
+  },
+  "lstm": {
+   "true_sequences": 12,
+   "predicted_sequences": 10,
+   "detected": 6,
+   "missed": 6,
+   "false_alarms": 4,
+   "precision": 0.6,
+   "recall": 0.5,
+   "f1": 0.5454545454545454,
+   "channels": 12,
+   "channel_days": 59.153,
+   "false_alarms_per_channel_day": 0.06762150739610237,
+   "alerts_after_dedupe": 10,
+   "mean_latency_samples": 361.8333333333333,
+   "mean_latency_minutes": 361.8333333333333,
+   "by_class": {
+    "point": {
+     "true": 10,
+     "detected": 6
+    },
+    "contextual": {
+     "true": 2,
+     "detected": 0
+    }
+   }
+  }
+ },
+ "per_channel": [
+  {
+   "channel": "A-1",
+   "n_test": 8640,
+   "days": 6.0,
+   "true_sequences": [
+    [
+     4690,
+     4774
+    ]
+   ],
+   "classes": [
+    "point"
+   ],
+   "detectors": {
+    "zscore": {
+     "counts": {
+      "true_sequences": 1,
+      "predicted_sequences": 0,
+      "detected": 0,
+      "missed": 1,
+      "false_alarms": 0
+     },
+     "predicted": [],
+     "latency_samples": [],
+     "missed": [
+      {
+       "sequence": [
+        4690,
+        4774
+       ],
+       "class": "point"
+      }
+     ],
+     "alerts_after_dedupe": 0,
+     "fit_seconds": 0.0,
+     "detect_seconds": 0.001
+    },
+    "lstm": {
+     "counts": {
+      "true_sequences": 1,
+      "predicted_sequences": 0,
+      "detected": 0,
+      "missed": 1,
+      "false_alarms": 0
+     },
+     "predicted": [],
+     "latency_samples": [],
+     "missed": [
+      {
+       "sequence": [
+        4690,
+        4774
+       ],
+       "class": "point"
+      }
+     ],
+     "alerts_after_dedupe": 0,
+     "fit_seconds": 52.254,
+     "detect_seconds": 0.035
+    }
+   }
+  },
+  {
+   "channel": "A-8",
+   "n_test": 8375,
+   "days": 5.815972222222222,
+   "true_sequences": [
+    [
+     4569,
+     8374
+    ]
+   ],
+   "classes": [
+    "contextual"
+   ],
+   "detectors": {
+    "zscore": {
+     "counts": {
+      "true_sequences": 1,
+      "predicted_sequences": 3,
+      "detected": 0,
+      "missed": 1,
+      "false_alarms": 3
+     },
+     "predicted": [
+      [
+       114,
+       120
+      ],
+      [
+       1794,
+       1807
+      ],
+      [
+       2154,
+       2162
+      ]
+     ],
+     "latency_samples": [],
+     "missed": [
+      {
+       "sequence": [
+        4569,
+        8374
+       ],
+       "class": "contextual"
+      }
+     ],
+     "alerts_after_dedupe": 3,
+     "fit_seconds": 0.0,
+     "detect_seconds": 0.001
+    },
+    "lstm": {
+     "counts": {
+      "true_sequences": 1,
+      "predicted_sequences": 1,
+      "detected": 0,
+      "missed": 1,
+      "false_alarms": 1
+     },
+     "predicted": [
+      [
+       114,
+       116
+      ]
+     ],
+     "latency_samples": [],
+     "missed": [
+      {
+       "sequence": [
+        4569,
+        8374
+       ],
+       "class": "contextual"
+      }
+     ],
+     "alerts_after_dedupe": 1,
+     "fit_seconds": 3.783,
+     "detect_seconds": 0.038
+    }
+   }
+  },
+  {
+   "channel": "D-11",
+   "n_test": 7431,
+   "days": 5.160416666666666,
+   "true_sequences": [
+    [
+     4270,
+     4330
+    ]
+   ],
+   "classes": [
+    "point"
+   ],
+   "detectors": {
+    "zscore": {
+     "counts": {
+      "true_sequences": 1,
+      "predicted_sequences": 0,
+      "detected": 0,
+      "missed": 1,
+      "false_alarms": 0
+     },
+     "predicted": [],
+     "latency_samples": [],
+     "missed": [
+      {
+       "sequence": [
+        4270,
+        4330
+       ],
+       "class": "point"
+      }
+     ],
+     "alerts_after_dedupe": 0,
+     "fit_seconds": 0.0,
+     "detect_seconds": 0.001
+    },
+    "lstm": {
+     "counts": {
+      "true_sequences": 1,
+      "predicted_sequences": 1,
+      "detected": 1,
+      "missed": 0,
+      "false_alarms": 0
+     },
+     "predicted": [
+      [
+       4298,
+       4325
+      ]
+     ],
+     "latency_samples": [
+      28
+     ],
+     "missed": [],
+     "alerts_after_dedupe": 1,
+     "fit_seconds": 3.089,
+     "detect_seconds": 0.048
+    }
+   }
+  },
+  {
+   "channel": "D-2",
+   "n_test": 8595,
+   "days": 5.96875,
+   "true_sequences": [
+    [
+     4319,
+     8536
+    ]
+   ],
+   "classes": [
+    "point"
+   ],
+   "detectors": {
+    "zscore": {
+     "counts": {
+      "true_sequences": 1,
+      "predicted_sequences": 2,
+      "detected": 1,
+      "missed": 0,
+      "false_alarms": 0
+     },
+     "predicted": [
+      [
+       7215,
+       7215
+      ],
+      [
+       7459,
+       7461
+      ]
+     ],
+     "latency_samples": [
+      2896
+     ],
+     "missed": [],
+     "alerts_after_dedupe": 2,
+     "fit_seconds": 0.0,
+     "detect_seconds": 0.002
+    },
+    "lstm": {
+     "counts": {
+      "true_sequences": 1,
+      "predicted_sequences": 1,
+      "detected": 1,
+      "missed": 0,
+      "false_alarms": 0
+     },
+     "predicted": [
+      [
+       5767,
+       5774
+      ]
+     ],
+     "latency_samples": [
+      1448
+     ],
+     "missed": [],
+     "alerts_after_dedupe": 1,
+     "fit_seconds": 4.112,
+     "detect_seconds": 0.033
+    }
+   }
+  },
+  {
+   "channel": "D-8",
+   "n_test": 7874,
+   "days": 5.468055555555556,
+   "true_sequences": [
+    [
+     4370,
+     4420
+    ]
+   ],
+   "classes": [
+    "point"
+   ],
+   "detectors": {
+    "zscore": {
+     "counts": {
+      "true_sequences": 1,
+      "predicted_sequences": 0,
+      "detected": 0,
+      "missed": 1,
+      "false_alarms": 0
+     },
+     "predicted": [],
+     "latency_samples": [],
+     "missed": [
+      {
+       "sequence": [
+        4370,
+        4420
+       ],
+       "class": "point"
+      }
+     ],
+     "alerts_after_dedupe": 0,
+     "fit_seconds": 0.0,
+     "detect_seconds": 0.001
+    },
+    "lstm": {
+     "counts": {
+      "true_sequences": 1,
+      "predicted_sequences": 2,
+      "detected": 1,
+      "missed": 0,
+      "false_alarms": 1
+     },
+     "predicted": [
+      [
+       1819,
+       1832
+      ],
+      [
+       4403,
+       4405
+      ]
+     ],
+     "latency_samples": [
+      33
+     ],
+     "missed": [],
+     "alerts_after_dedupe": 2,
+     "fit_seconds": 3.265,
+     "detect_seconds": 0.039
+    }
+   }
+  },
+  {
+   "channel": "E-2",
+   "n_test": 8532,
+   "days": 5.925,
+   "true_sequences": [
+    [
+     5598,
+     6995
+    ]
+   ],
+   "classes": [
+    "point"
+   ],
+   "detectors": {
+    "zscore": {
+     "counts": {
+      "true_sequences": 1,
+      "predicted_sequences": 5,
+      "detected": 1,
+      "missed": 0,
+      "false_alarms": 2
+     },
+     "predicted": [
+      [
+       4433,
+       4445
+      ],
+      [
+       5033,
+       5039
+      ],
+      [
+       5605,
+       5693
+      ],
+      [
+       6834,
+       6836
+      ],
+      [
+       6965,
+       6966
+      ]
+     ],
+     "latency_samples": [
+      7
+     ],
+     "missed": [],
+     "alerts_after_dedupe": 5,
+     "fit_seconds": 0.0,
+     "detect_seconds": 0.002
+    },
+    "lstm": {
+     "counts": {
+      "true_sequences": 1,
+      "predicted_sequences": 1,
+      "detected": 0,
+      "missed": 1,
+      "false_alarms": 1
+     },
+     "predicted": [
+      [
+       8033,
+       8035
+      ]
+     ],
+     "latency_samples": [],
+     "missed": [
+      {
+       "sequence": [
+        5598,
+        6995
+       ],
+       "class": "point"
+      }
+     ],
+     "alerts_after_dedupe": 1,
+     "fit_seconds": 4.231,
+     "detect_seconds": 0.036
+    }
+   }
+  },
+  {
+   "channel": "E-8",
+   "n_test": 8532,
+   "days": 5.925,
+   "true_sequences": [
+    [
+     5400,
+     6022
+    ]
+   ],
+   "classes": [
+    "point"
+   ],
+   "detectors": {
+    "zscore": {
+     "counts": {
+      "true_sequences": 1,
+      "predicted_sequences": 0,
+      "detected": 0,
+      "missed": 1,
+      "false_alarms": 0
+     },
+     "predicted": [],
+     "latency_samples": [],
+     "missed": [
+      {
+       "sequence": [
+        5400,
+        6022
+       ],
+       "class": "point"
+      }
+     ],
+     "alerts_after_dedupe": 0,
+     "fit_seconds": 0.0,
+     "detect_seconds": 0.001
+    },
+    "lstm": {
+     "counts": {
+      "true_sequences": 1,
+      "predicted_sequences": 1,
+      "detected": 1,
+      "missed": 0,
+      "false_alarms": 0
+     },
+     "predicted": [
+      [
+       6000,
+       6002
+      ]
+     ],
+     "latency_samples": [
+      600
+     ],
+     "missed": [],
+     "alerts_after_dedupe": 1,
+     "fit_seconds": 3.403,
+     "detect_seconds": 0.047
+    }
+   }
+  },
+  {
+   "channel": "F-5",
+   "n_test": 3922,
+   "days": 2.723611111111111,
+   "true_sequences": [
+    [
+     3550,
+     3700
+    ]
+   ],
+   "classes": [
+    "point"
+   ],
+   "detectors": {
+    "zscore": {
+     "counts": {
+      "true_sequences": 1,
+      "predicted_sequences": 1,
+      "detected": 0,
+      "missed": 1,
+      "false_alarms": 1
+     },
+     "predicted": [
+      [
+       248,
+       254
+      ]
+     ],
+     "latency_samples": [],
+     "missed": [
+      {
+       "sequence": [
+        3550,
+        3700
+       ],
+       "class": "point"
+      }
+     ],
+     "alerts_after_dedupe": 1,
+     "fit_seconds": 0.0,
+     "detect_seconds": 0.001
+    },
+    "lstm": {
+     "counts": {
+      "true_sequences": 1,
+      "predicted_sequences": 0,
+      "detected": 0,
+      "missed": 1,
+      "false_alarms": 0
+     },
+     "predicted": [],
+     "latency_samples": [],
+     "missed": [
+      {
+       "sequence": [
+        3550,
+        3700
+       ],
+       "class": "point"
+      }
+     ],
+     "alerts_after_dedupe": 0,
+     "fit_seconds": 1.939,
+     "detect_seconds": 0.021
+    }
+   }
+  },
+  {
+   "channel": "G-4",
+   "n_test": 7632,
+   "days": 5.3,
+   "true_sequences": [
+    [
+     4690,
+     4720
+    ]
+   ],
+   "classes": [
+    "point"
+   ],
+   "detectors": {
+    "zscore": {
+     "counts": {
+      "true_sequences": 1,
+      "predicted_sequences": 0,
+      "detected": 0,
+      "missed": 1,
+      "false_alarms": 0
+     },
+     "predicted": [],
+     "latency_samples": [],
+     "missed": [
+      {
+       "sequence": [
+        4690,
+        4720
+       ],
+       "class": "point"
+      }
+     ],
+     "alerts_after_dedupe": 0,
+     "fit_seconds": 0.0,
+     "detect_seconds": 0.001
+    },
+    "lstm": {
+     "counts": {
+      "true_sequences": 1,
+      "predicted_sequences": 1,
+      "detected": 1,
+      "missed": 0,
+      "false_alarms": 0
+     },
+     "predicted": [
+      [
+       4708,
+       4726
+      ]
+     ],
+     "latency_samples": [
+      18
+     ],
+     "missed": [],
+     "alerts_after_dedupe": 1,
+     "fit_seconds": 3.379,
+     "detect_seconds": 0.03
+    }
+   }
+  },
+  {
+   "channel": "M-5",
+   "n_test": 2303,
+   "days": 1.5993055555555555,
+   "true_sequences": [
+    [
+     1250,
+     1550
+    ]
+   ],
+   "classes": [
+    "contextual"
+   ],
+   "detectors": {
+    "zscore": {
+     "counts": {
+      "true_sequences": 1,
+      "predicted_sequences": 0,
+      "detected": 0,
+      "missed": 1,
+      "false_alarms": 0
+     },
+     "predicted": [],
+     "latency_samples": [],
+     "missed": [
+      {
+       "sequence": [
+        1250,
+        1550
+       ],
+       "class": "contextual"
+      }
+     ],
+     "alerts_after_dedupe": 0,
+     "fit_seconds": 0.0,
+     "detect_seconds": 0.001
+    },
+    "lstm": {
+     "counts": {
+      "true_sequences": 1,
+      "predicted_sequences": 1,
+      "detected": 0,
+      "missed": 1,
+      "false_alarms": 1
+     },
+     "predicted": [
+      [
+       1553,
+       1556
+      ]
+     ],
+     "latency_samples": [],
+     "missed": [
+      {
+       "sequence": [
+        1250,
+        1550
+       ],
+       "class": "contextual"
+      }
+     ],
+     "alerts_after_dedupe": 1,
+     "fit_seconds": 0.738,
+     "detect_seconds": 0.014
+    }
+   }
+  },
+  {
+   "channel": "P-14",
+   "n_test": 6100,
+   "days": 4.236111111111111,
+   "true_sequences": [
+    [
+     4575,
+     4755
+    ]
+   ],
+   "classes": [
+    "point"
+   ],
+   "detectors": {
+    "zscore": {
+     "counts": {
+      "true_sequences": 1,
+      "predicted_sequences": 0,
+      "detected": 0,
+      "missed": 1,
+      "false_alarms": 0
+     },
+     "predicted": [],
+     "latency_samples": [],
+     "missed": [
+      {
+       "sequence": [
+        4575,
+        4755
+       ],
+       "class": "point"
+      }
+     ],
+     "alerts_after_dedupe": 0,
+     "fit_seconds": 0.0,
+     "detect_seconds": 0.001
+    },
+    "lstm": {
+     "counts": {
+      "true_sequences": 1,
+      "predicted_sequences": 0,
+      "detected": 0,
+      "missed": 1,
+      "false_alarms": 0
+     },
+     "predicted": [],
+     "latency_samples": [],
+     "missed": [
+      {
+       "sequence": [
+        4575,
+        4755
+       ],
+       "class": "point"
+      }
+     ],
+     "alerts_after_dedupe": 0,
+     "fit_seconds": 2.842,
+     "detect_seconds": 0.028
+    }
+   }
+  },
+  {
+   "channel": "R-1",
+   "n_test": 7244,
+   "days": 5.030555555555556,
+   "true_sequences": [
+    [
+     4510,
+     4590
+    ]
+   ],
+   "classes": [
+    "point"
+   ],
+   "detectors": {
+    "zscore": {
+     "counts": {
+      "true_sequences": 1,
+      "predicted_sequences": 0,
+      "detected": 0,
+      "missed": 1,
+      "false_alarms": 0
+     },
+     "predicted": [],
+     "latency_samples": [],
+     "missed": [
+      {
+       "sequence": [
+        4510,
+        4590
+       ],
+       "class": "point"
+      }
+     ],
+     "alerts_after_dedupe": 0,
+     "fit_seconds": 0.0,
+     "detect_seconds": 0.001
+    },
+    "lstm": {
+     "counts": {
+      "true_sequences": 1,
+      "predicted_sequences": 1,
+      "detected": 1,
+      "missed": 0,
+      "false_alarms": 0
+     },
+     "predicted": [
+      [
+       4554,
+       4559
+      ]
+     ],
+     "latency_samples": [
+      44
+     ],
+     "missed": [],
+     "alerts_after_dedupe": 1,
+     "fit_seconds": 3.18,
+     "detect_seconds": 0.027
+    }
+   }
+  }
+ ],
+ "dataset": "synthetic (seed 0)",
+ "zscore_params": "defaults",
+ "tuning": null,
+ "wall_seconds": 86.6,
+ "python": "3.13.17",
+ "dataset_sha256": "e89df4ea419103c58a9a2686ab4dde730e744f51648157a7e9c85c55c1c297c1"
+}

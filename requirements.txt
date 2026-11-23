@@ -1,0 +1,17 @@
+numpy
+pandas
+confluent-kafka
+psycopg2-binary
+SQLAlchemy
+torch
+matplotlib
+skyfield
+sgp4
+fastapi
+uvicorn
+requests
+python-dotenv
+# dev / tests
+pytest
+hypothesis
+httpx
