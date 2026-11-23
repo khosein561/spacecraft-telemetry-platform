@@ -1,6 +1,6 @@
 # Evaluation report (SYNTHETIC benchmark)
 
-**Read first.** These numbers come from generated signals that carry the *real* NASA SMAP/MSL label geometry (channel ids, test lengths, anomaly index ranges, classes). The signal values and the injected anomalies are mine. They show the harness works and compare two methods fairly *on this benchmark*. They say nothing certain about real spacecraft data. Reproduce on real data with the commands in the README and replace this section with those numbers.
+These numbers come from generated signals that preserve the NASA SMAP/MSL label geometry (channel IDs, test lengths, anomaly ranges, and anomaly classes). The signal values and injected anomalies are synthetic. The benchmark demonstrates the evaluation pipeline and compares both methods fairly, but the results do not establish performance on real spacecraft data.
 
 ## Protocol
 
@@ -17,11 +17,11 @@
 
 Precision = detected / (detected + false alarms); recall = detected / true sequences. Alerts raised: LSTM 10 (6 detections, 4 false alarms); z-score 11 (2 detections, 6 false alarms; the other alerts fall on already-detected sequences). Exact counts per channel are in `results/synthetic_seed0/results.json`.
 
-Training time: about 3-4 s per channel on a 2-core CPU (the first channel took 52 s, probably one-time start-up cost; I did not isolate the cause).
+Training time: about 3-4 seconds per channel on a 2-core CPU. Initial interpreter and library startup can add time to the first channel.
 
 ## How much to trust this
 
-- **Tiny sample.** 12 true sequences. 6/12 vs 2/12 is suggestive, not significant; a different seed could move it noticeably. I did not run multiple seeds.
+- **Tiny sample.** 12 true sequences. 6/12 versus 2/12 is suggestive but not statistically significant; a different seed could change the result noticeably. Multiple-seed confidence intervals are not yet reported.
 - **Lenient overlap rule.** Several labelled "point" ranges are long (D-2: 4,218 samples, E-2: 1,398, E-8: 623) while the generator puts only a few short spikes inside them. An alert on any one spike counts the whole range as detected. This is the same overlap logic the original paper uses, but it flatters recall. Likewise "mean latency" (LSTM 362 min, z-score 1,452 min) is dominated by those long ranges - the spike simply sits late in the range - so it is *not* a real detection delay. Short ranges (D-11, D-8, G-4, R-1) were caught 18-44 samples after the range start.
 - **Self-made anomalies.** The point anomalies are spikes, which suit a forecaster; real anomalies are messier.
 - **Hyper-parameters were tuned with labels** on seed 100; the generator is the same, so tuning may transfer better here than to real data.
@@ -42,6 +42,10 @@ Training time: about 3-4 s per channel on a 2-core CPU (the first channel took 5
 - Multivariate telemetry inputs (extra command features present in the real arrays) are not used.
 - Timestamps: SMAP/MSL have none; a fixed 60 s cadence is assumed, so "days" and "false alarms per channel-day" are assumptions of this project.
 
-## Next experiments I would run (not done)
+## Recommended follow-up experiments
 
-Multiple seeds with confidence intervals; the real SMAP/MSL data; per-channel threshold sanity checks; a model that scores *distribution* change (so smooth contextual anomalies are visible); comparing against an isolation forest.
+- Run multiple seeds and report confidence intervals.
+- Evaluate the real SMAP/MSL dataset.
+- Add per-channel threshold checks.
+- Add a distribution-change detector for smooth contextual anomalies.
+- Compare against isolation forest and additional baselines.

@@ -8,14 +8,14 @@ sudo -u postgres psql -c "CREATE ROLE telemetry LOGIN CREATEDB PASSWORD 'change_
 export POSTGRES_PASSWORD=change_me     # or copy .env.example to .env
 pytest -rs                             # -rs shows skip reasons
 ```
-**If pytest reports skips, the database tests did not run.** During the build of this project 26 tests were silently skipped because the role did not exist; the final run was 121 passed, 0 skipped.
+**If pytest reports skips, the database tests did not run.** Use the skip summary and local PostgreSQL configuration to verify that the store suite executed.
 
 ## Common problems
 
 | Symptom | Likely cause | Check |
 |---|---|---|
 | `password authentication failed` | role/password mismatch | `.env` vs the role you created |
-| Tables missing after `init_schema` | script ran inside a transaction wrapper | `TimescaleStore._run_script` must use the raw driver connection (fixed; every store test would fail if the tables were missing) |
+| Tables missing after `init_schema` | schema script did not execute on the target connection | `TimescaleStore._run_script` must use the raw driver connection |
 | Consumer lag grows | decode errors or slow DB | `bad_packets` count; `SELECT count(*) FROM telemetry_readings` over time |
 | Readings fewer than expected | drops/corruption in the stream | `packet_events` kinds and the `/packet-health` endpoint; compare with the producer's fault flags |
 | Zero detections on a channel | threshold too high / signal too smooth | `docs/evaluation_report.md` failure cases; plot with `scripts/make_figures.py` |
